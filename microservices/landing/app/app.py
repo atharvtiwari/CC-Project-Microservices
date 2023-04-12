@@ -17,12 +17,25 @@ def multiply(n1, n2):
     return n1*n2
 
 def divide(n1, n2):
+    if n2 == 0:
+        if n1 == 0:
+            return "undefined"
+        return float("inf")
     return n1/n2
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    number_1 = request.form.get("first")
-    number_2 = request.form.get('second')
+    try:
+        float(request.form.get('first'))
+        number_1 = float(request.form.get('first'))
+    except:
+        number_1 = 0
+    try:
+        float(request.form.get('second'))
+        number_2 = float(request.form.get('second'))
+    except:
+        number_2 = 0
+
     operation = request.form.get('operation')
     result = 0
     if operation == 'add':
