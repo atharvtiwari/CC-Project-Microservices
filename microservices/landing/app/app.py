@@ -6,22 +6,6 @@ import os
 app = Flask(__name__)
 app.secret_key = '080_087_092_111'
 
-def add(n1, n2):
-    return n1+n2
-
-def minus(n1, n2):
-    return n1-n2
-
-def multiply(n1, n2):
-    return n1*n2
-
-def divide(n1, n2):
-    if n2 == 0:
-        if n1 == 0:
-            return "undefined"
-        return float("inf")
-    return n1/n2
-
 @app.route('/', methods=['POST', 'GET'])
 def index():
     try:
@@ -40,11 +24,11 @@ def index():
     if operation == 'add':
         result = requests.get(f'http://addition:5051/add/{str(number_1)}/{str(number_2)}').text
     elif operation == 'minus':
-        result =  minus(number_1, number_2)
+        result =  requests.get(f"http://subtraction:5052/sub/{str(number_1)}/{str(number_2)}").text
     elif operation == 'multiply':
-        result = multiply(number_1, number_2)
+        result =  requests.get(f"http://multiplication:5053/mul/{str(number_1)}/{str(number_2)}").text
     elif operation == 'divide':
-        result = divide(number_1, number_2)
+        result =  requests.get(f"http://division:5054/div/{str(number_1)}/{str(number_2)}").text
     else:
         result = "undefined"
 
@@ -54,7 +38,7 @@ def index():
 
 if __name__ == '__main__':
     app.run(
-        debug=True,
-        port=5050,
-        host="0.0.0.0"
+        debug = True,
+        port = 5050,
+        host = "0.0.0.0"
     )
