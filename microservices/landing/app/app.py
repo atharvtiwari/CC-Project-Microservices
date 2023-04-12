@@ -4,8 +4,7 @@ import requests
 import os
 
 app = Flask(__name__)
-app.secret_key = 'thisisjustarandomstring'
-
+app.secret_key = '080_087_092_111'
 
 def add(n1, n2):
     return n1+n2
@@ -39,13 +38,15 @@ def index():
     operation = request.form.get('operation')
     result = 0
     if operation == 'add':
-        result = add(number_1, number_2)
+        result = requests.get(f'http://addition:5051/add/{str(number_1)}/{str(number_2)}').text
     elif operation == 'minus':
         result =  minus(number_1, number_2)
     elif operation == 'multiply':
         result = multiply(number_1, number_2)
     elif operation == 'divide':
         result = divide(number_1, number_2)
+    else:
+        result = "undefined"
 
     flash(f'The result of operation {operation} on {number_1} and {number_2} is {result}')
 

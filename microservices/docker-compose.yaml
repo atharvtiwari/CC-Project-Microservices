@@ -6,10 +6,21 @@ services:
     hostname: landing-service
     ports:
       - 5050:5050  # host:container
+    depends_on:
+      - addition-service
     networks:
       sample:
         aliases:
           - landing-service
   # Add more services below
+  addition-service:
+    build: ./addition  # path is relative to docker-compose.yml location
+    hostname: addition-service
+    ports:
+      - 5051:5051  # host:container
+    networks:
+      sample:
+        aliases:
+          - addition
 networks:
   sample:
