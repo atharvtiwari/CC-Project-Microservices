@@ -6,6 +6,9 @@ api = Api(app)
 app.secret_key = '080_087_092_111'
 
 class Addition(Resource):
+    def __init__(self):
+        pass
+    
     def get(self, n1, n2):
         return float(n1) + float(n2)
 

@@ -11,6 +11,7 @@ services:
       - subtraction-service
       - multiplication-service
       - division-service
+      - gcd-service
     networks:
       sample:
         aliases:
@@ -55,5 +56,75 @@ services:
       sample:
         aliases:
           - division
+
+  gcd-service:
+    build: ./gcd
+    hostname: gcd-service
+    ports:
+      - 5055:5055
+    networks:
+      sample:
+        aliases:
+          - gcd
+  
+  lcm-service:
+    build: ./lcm
+    hostname: lcm-service
+    ports:
+      - 5056:5056
+    networks:
+      sample:
+        aliases:
+          - lcm
+
+  modulus-service:
+    build: ./modulus
+    hostname: modulus-service
+    ports:
+      - 5057:5057
+    networks:
+      sample:
+        aliases:
+          - modulus
+
+  exponent-service:
+    build: ./exponent
+    hostname: exponent-service
+    ports:
+      - 5058:5058
+    networks:
+      sample:
+        aliases:
+          - exponent
+
+  greater_than-service:
+    build: ./greater_than
+    hostname: greater_than-service
+    ports:
+      - 5059:5059
+    networks:
+      sample:
+        aliases:
+          - greater_than
+  
+  less_than-service:
+    build: ./less_than
+    hostname: less_than-service
+    ports:
+      - 5060:5060
+    networks:
+      sample:
+        aliases:
+          - less_than
+  
+  equal-service:
+    build: ./equal
+    hostname: equal-service
+    ports:
+      - 5061:5061
+    networks:
+      sample:
+        aliases:
+          - equal
 networks:
   sample:

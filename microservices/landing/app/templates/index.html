@@ -9,15 +9,22 @@
          <br>
          Enter Operation: <select id="op" name="operation">
             <option value="add">Addition</option>
-            <option value="minus">Subtraction</option>
+            <option value="subtract">Subtraction</option>
             <option value="multiply">Multiplication</option>
             <option value="divide">Division</option>
+            <option value="gcd">GCD</option>
+            <option value="lcm">LCM</option>
+            <option value="mod">Modulus</option>
+            <option value="exp">Exponent</option>
+            <option value="gt">Greater Than</option>
+            <option value="lt">Less Than</option>
+            <option value="eq">Equal</option>
           </select>
          <br><br>
          <input type="submit" name="submit_button">
       </form>
-        {% for message in get_flashed_messages() %}
-         {{message}}
-      {% endfor %}
+         {% for message in get_flashed_messages() %}
+            {{message}}
+         {% endfor %}
    </body>
 </html>
