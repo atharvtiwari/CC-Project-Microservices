@@ -12,10 +12,13 @@ class LCM(Resource):
         pass
     
     def get(self, n1, n2):
-        gcd = float(math.gcd(int(n1), int(n2)))
-        return (0 if gcd == 0 else (abs(n1 * n2) / gcd))
+        try:
+            gcd = float(math.gcd(int(n1), int(n2)))
+            return (0 if gcd == 0 else (abs(n1 * n2) / gcd))
+        except Exception as e:
+            return e
 
-api.add_resource(LCM, "/lcm/<float:n1>/<float:n2>")
+api.add_resource(LCM, "/lcm/<float(signed=True):n1>/<float(signed=True):n2>")
 
 if __name__ == "__main__":
     app.run(

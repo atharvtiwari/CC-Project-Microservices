@@ -1,30 +1,34 @@
 <html>
+   <head>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}" />
+   </head>
    <body>
       <h1>Arithmetic Microservices</h1>
-      <form action="" method="POST">
-         <!-- Hint 1: What if input "first" and "second" had default values? -->
-         Enter the First number : <input name="first">
-         <br>
-         Enter the Second number: <input name="second">
-         <br>
-         Enter Operation: <select id="op" name="operation">
-            <option value="add">Addition</option>
-            <option value="subtract">Subtraction</option>
-            <option value="multiply">Multiplication</option>
-            <option value="divide">Division</option>
-            <option value="gcd">GCD</option>
-            <option value="lcm">LCM</option>
-            <option value="mod">Modulus</option>
-            <option value="exp">Exponent</option>
-            <option value="gt">Greater Than</option>
-            <option value="lt">Less Than</option>
-            <option value="eq">Equal</option>
-          </select>
-         <br><br>
-         <input type="submit" name="submit_button">
-      </form>
-         {% for message in get_flashed_messages() %}
-            {{message}}
-         {% endfor %}
+      <div id="form-div">
+         <form id="form" action="" method="POST">
+            <label for="first_number"> Enter the First number </label>
+            <br>
+            <input id="first_number" name="first">
+            <br>
+            <label for="second_number"> Enter the Second number </label>
+            <br>
+            <input id="second_number" name="second">
+            <br>
+            <label for="op"> Enter Operation </label>
+            <br>
+            <select id="op" name="operation">
+               {% for choice in choices %}
+               <option value="{{ choice }}">{{ choices[choice].operation }}</option>
+               {% endfor %}
+            </select>
+            <br><br>
+            <input id="submit_button" type="submit" name="submit_button">
+         </form>
+         <div id="flash-div">
+            {% for message in get_flashed_messages() %}
+               {{ message }}
+            {% endfor %}
+         </div>
+      </div>
    </body>
 </html>

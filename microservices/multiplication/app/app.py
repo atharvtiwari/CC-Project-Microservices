@@ -10,9 +10,12 @@ class Multiplication(Resource):
         pass
     
     def get(self, n1, n2):
-        return float(n1) * float(n2)
+        try:
+            return float(n1) * float(n2)
+        except Exception as e:
+            return e
 
-api.add_resource(Multiplication, "/mul/<float:n1>/<float:n2>")
+api.add_resource(Multiplication, "/mul/<float(signed=True):n1>/<float(signed=True):n2>")
 
 if __name__ == "__main__":
     app.run(

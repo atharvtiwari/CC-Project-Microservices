@@ -23,7 +23,7 @@ def index():
         "add":  {
             "operation": "addition",
             "port": 5051,
-            "method": "add"
+            "method": "add",
         },
         "subtract":  {
             "operation": "subtraction",
@@ -81,13 +81,12 @@ def index():
 
     try:
         op = operation_mapping[operation]
-        result = requests.get(f"http://{op['operation']}:{op['port']}/{op['method']}/{str(number_1)}/{str(number_2)}").text
+        result = requests.get(f"http://{op['operation']}:{op['port']}/{op['method']}/{str(number_1)}/{str(number_2)}")
+        flash(f"The result of operation {operation} on {number_1} and {number_2} is {result.text}")
     except:
-        result = "undefined"
+        flash(f"Please select an operation")
 
-    flash(f'The result of operation {operation} on {number_1} and {number_2} is {result}')
-
-    return render_template('index.html')
+    return render_template('index.html', choices=operation_mapping)
 
 if __name__ == '__main__':
     app.run(

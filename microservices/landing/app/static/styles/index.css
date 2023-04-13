@@ -1,0 +1,45 @@
+body {
+    background: orange;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    margin: auto;
+    padding-top: 1%;
+    padding-bottom: 2.5%;
+    text-align: center;
+    width: 50%;
+}
+
+input {
+    margin: 1%;
+    margin-left: 0%;
+    background-color: aqua;
+}
+
+select {
+    margin: 1%;
+    margin-left: 0%;
+    background-color: aqua;
+}
+
+#flash-div {
+    border-style: dashed;
+    color: lightblue;
+    margin-top: -1%;
+    padding: 1%;
+    text-align: center;
+}
+
+#form-div {
+    background: green;
+    border-style: dotted;
+    margin: auto;
+    padding: 1%;
+    width: 50%;
+}
+
+#submit_button {
+    background: pink;
+    margin-top: -1%;
+}

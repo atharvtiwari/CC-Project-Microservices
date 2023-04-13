@@ -10,14 +10,12 @@ class Division(Resource):
         pass
     
     def get(self, n1, n2):
-        if n2 == 0 and n1 == 0:
-            return "undefined"
-        elif n2 == 0:
-            return float("inf")
-        else:
+        try:
             return n1 / n2
+        except Exception as e:
+            return e
 
-api.add_resource(Division, "/div/<float:n1>/<float:n2>")
+api.add_resource(Division, "/div/<float(signed=True):n1>/<float(signed=True):n2>")
 
 if __name__ == "__main__":
     app.run(
