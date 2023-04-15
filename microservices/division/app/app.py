@@ -13,7 +13,7 @@ class Division(Resource):
         try:
             return n1 / n2
         except Exception as e:
-            return e
+            return str(e)
 
 api.add_resource(Division, "/div/<float(signed=True):n1>/<float(signed=True):n2>")
 

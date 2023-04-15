@@ -13,7 +13,7 @@ class LessThan(Resource):
         try:
             return n1 < n2
         except Exception as e:
-            return e
+            return str(e)
 
 api.add_resource(LessThan, "/lt/<float(signed=True):n1>/<float(signed=True):n2>")
 

@@ -13,7 +13,7 @@ class Subtraction(Resource):
         try:
             return float(n1) - float(n2)
         except Exception as e:
-            return e
+            return str(e)
 
 api.add_resource(Subtraction, "/sub/<float(signed=True):n1>/<float(signed=True):n2>")
 
