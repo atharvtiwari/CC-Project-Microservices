@@ -14,9 +14,10 @@ class LCM(Resource):
     def get(self, n1, n2):
         try:
             gcd = float(math.gcd(int(n1), int(n2)))
-            return (0 if gcd == 0 else (abs(n1 * n2) / gcd))
+            res = 0 if gcd == 0 else (abs(n1 * n2) / gcd)
+            return {"error": False, "result": res}
         except Exception as e:
-            return str(e)
+            return {"error": True, "message": str(e)}
 
 api.add_resource(LCM, "/lcm/<float(signed=True):n1>/<float(signed=True):n2>")
 

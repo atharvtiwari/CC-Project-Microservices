@@ -13,9 +13,9 @@ class GCD(Resource):
     
     def get(self, n1, n2):
         try:
-            return float(math.gcd(int(n1), int(n2)))
+            return {"error": False, "result": float(math.gcd(int(n1), int(n2)))}
         except Exception as e:
-            return str(e)
+            return {"error": True, "message": str(e)}
 
 api.add_resource(GCD, "/gcd/<float(signed=True):n1>/<float(signed=True):n2>")
 

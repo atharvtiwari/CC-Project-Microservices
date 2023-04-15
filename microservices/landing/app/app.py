@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash
 
 import requests
 import os
@@ -9,14 +9,16 @@ app.secret_key = '080_087_092_111'
 @app.route('/', methods=['POST', 'GET'])
 def index():
     try:
-        float(request.form.get('first'))
-        number_1 = float(request.form.get('first'))
-    except:
+        number_1 = request.form.get('first')
+        if number_1 == "":
+            raise ValueError("No value entered, defaults to 0.0")
+    except ValueError as e:
         number_1 = 0.0
     try:
-        float(request.form.get('second'))
-        number_2 = float(request.form.get('second'))
-    except:
+        number_2 = request.form.get('second')
+        if number_2 == "":
+            raise ValueError("No value entered, defaults to 0.0")
+    except ValueError as e:
         number_2 = 0.0
 
     operation_mapping = {
@@ -81,8 +83,14 @@ def index():
 
     try:
         op = operation_mapping[operation]
-        result = requests.get(f"http://{op['operation']}:{op['port']}/{op['method']}/{str(number_1)}/{str(number_2)}")
-        flash(f"The result of operation {operation} on {number_1} and {number_2} is {result.text}")
+        result = requests.get(f"http://{op['operation']}:{op['port']}/{op['method']}/{str(float(number_1))}/{str(float(number_2))}").json()
+
+        if result["error"]:
+            raise TypeError(result["message"])
+        
+        flash(f"The result of operation {operation} on {float(number_1)} and {float(number_2)} is {result['result']}")
+    except (ValueError, TypeError) as e:
+        flash(e)
     except:
         flash(f"Please select an operation")
 

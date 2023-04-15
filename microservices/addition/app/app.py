@@ -11,15 +11,15 @@ class Addition(Resource):
     
     def get(self, n1, n2):
         try:
-            return float(n1) + float(n2)
+            return {"error": False, "result": n1 + n2}
         except Exception as e:
-            return str(e)
+            return {"error": True, "message": str(e)}
 
 api.add_resource(Addition,'/add/<float(signed=True):n1>/<float(signed=True):n2>')
 
 if __name__ == '__main__':
     app.run(
-        debug=True,
-        port=5051,
-        host="0.0.0.0"
+        debug = True,
+        port = 5051,
+        host = "0.0.0.0"
     )
