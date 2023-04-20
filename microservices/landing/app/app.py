@@ -76,6 +76,16 @@ def index():
             "operation": "equal",
             "port": 5061,
             "method": "eq"
+        },
+        "sin": {
+            "operation": "sine",
+            "port": 5062,
+            "method": "sin"
+        },
+        "cos": {
+            "operation": "cosine",
+            "port": 5063,
+            "method": "cos"
         }
     }
 
@@ -88,7 +98,10 @@ def index():
         if result["error"]:
             raise TypeError(result["message"])
         
-        flash(f"The result of operation {operation} on {float(number_1)} and {float(number_2)} is {result['result']}")
+        if op['operation'] in ['cosine', 'sine']:
+            flash(f"The result of operation {operation} on {float(number_1)} degree(s) is {result['result']}")
+        else:
+            flash(f"The result of operation {operation} on {float(number_1)} and {float(number_2)} is {result['result']}")
     except (ValueError, TypeError) as e:
         flash(e)
     except:

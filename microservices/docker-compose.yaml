@@ -126,5 +126,25 @@ services:
       sample:
         aliases:
           - equal
+  
+  sine-service:
+    build: ./sine
+    hostname: sine-service
+    ports:
+      - 5062:5062
+    networks:
+      sample:
+        aliases:
+          - sine
+  
+  cosine-service:
+    build: ./cosine
+    hostname: cosine-service
+    ports:
+      - 5063:5063
+    networks:
+      sample:
+        aliases:
+          - cosine
 networks:
   sample:
